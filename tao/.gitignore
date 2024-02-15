@@ -1,0 +1,11 @@
+*
+!config/.gitkeep
+!data/.gitkeep
+!composer.*
+!.github
+!.gitignore
+!.htaccess
+!*.md
+!*.ico
+!*.php
+!*.sh

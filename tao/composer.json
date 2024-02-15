@@ -1,0 +1,40 @@
+{
+    "name": "oat-sa/pci-package",
+    "license": "GPL-2.0-only",
+    "config": {
+        "preferred-install": "dist",
+        "platform": {
+            "php": "8"
+        },
+        "allow-plugins": {
+            "oat-sa/oatbox-extension-installer": true,
+            "oat-sa/composer-npm-bridge": true,
+            "php-http/discovery": true
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:oat-sa/extension-parcc-tei.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:oat-sa/extension-tao-training-pci.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:janfix/extension-geogebra.git"
+        }
+    ],
+    "require": {
+        "oat-sa/tao-community": "2024.02",
+        "oat-sa/extension-tao-devtools": "*",
+        "oat-sa/extension-parcc-tei": "*",
+        "oat-sa/extension-tao-training-pci": "dev-main",
+        "janfix/extension-geogebra": "*",
+        "oat-sa/extension-tao-xmledit": "^4.2",
+        "oat-sa/extension-tao-xmledit-qtidebugger": "^2.0",
+        "oat-sa/extension-tao-xmledit-responseprocessing": "^2.3"
+    },
+    "description": "TAO is an Open Source e-Testing platform that empowers you to build, deliver, and share innovative and engaging assessments online – in any language or subject matter."
+}

@@ -1,0 +1,50 @@
+{
+    "seed": {
+        "identifier": "pci-training"
+    },
+    "extensions": ["taoCe", "taoMediaManager", "pciSamples", "parccTei", "geogebra", "xmlEdit", "xmlEditQtiDebugger", "taoDevTools"],
+    "super-user": {
+        "login": "admin",
+        "password": "Admin.12345",
+        "firstname": "John",
+        "lastname": "Doe",
+        "email": ""
+    },
+    "configuration": {
+        "global": {
+            "lang": "en-US",
+            "mode": "debug",
+            "instance_name": "pci-training",
+            "namespace": "https://training.pci.localhost/ontologies/tao.rdf",
+            "url": "https://training.pci.localhost/",
+            "session_name": "tao_pci-training",
+            "timezone": "Europe/Luxembourg",
+            "import_data": true
+        },
+        "generis": {
+            "persistences": {
+                "default": {
+                    "driver": "pdo_mysql",
+                    "host": "pci-training-mariadb",
+                    "port": 3306,
+                    "dbname": "pci-training",
+                    "user": "root",
+                    "password": "r00t"
+                }
+            },
+            "log": [
+                {
+                    "class": "UDPAppender",
+                    "host": "127.0.0.1",
+                    "port": 5775,
+                    "threshold": 1
+                }
+            ]
+        }
+    },
+    "postInstall": [
+        {
+            "class": "\\oat\\taoQtiItem\\scripts\\initEventCreatorLoad"
+        }
+    ]
+}
