@@ -39,7 +39,12 @@
                     "port": 5775,
                     "threshold": 1
                 }
-            ]
+            ],
+            "taoQtiItem": {
+                "debug_portable_element": {
+                    "likertScaleInteraction": "qtiItemPci/views/js/pciCreator/dev/likertScaleInteraction/"
+                }
+            }
         }
     },
     "postInstall": [
