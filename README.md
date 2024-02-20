@@ -204,13 +204,13 @@ docker network create pci-docker
 - Build docker services:
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 - Enter TAO directory:
 
 ```bash
-cd tao
+cd ../tao
 ```
 
 - Install the sources:
@@ -242,7 +242,7 @@ cd stack
 - Tear down the docker services:
 
 ```bash
-docker-compose down --rmi all -v
+docker compose down --rmi all -v
 ```
 
 - Remove the `pci-docker` docker network:
@@ -266,19 +266,16 @@ mkcert -uninstall
 
 - Start the server
 ```bash
-cd stack
-docker-compose up -d
+docker compose -p pci-training -f ./stack/docker-compose.yml up -d
 ```
 
 - Stop the server
 ```bash
-cd stack
-docker-compose down
+docker compose -p pci-training -f ./stack/docker-compose.yml down
 ```
 
 - Install TAO
 ```bash
-cd stack
 docker exec -it pci-training-phpfpm composer install --prefer-source --no-interaction --no-progress
 docker exec -it pci-training-phpfpm bash ./tao-cleanup.sh
 docker exec -it pci-training-phpfpm php tao/scripts/taoSetup.php /var/stack/setup.json -vvv
@@ -288,42 +285,35 @@ docker exec -it pci-training-phpfpm bash ./tao-mathjax.sh
 
 - Update TAO
 ```bash
-cd stack
 docker exec -it pci-training-phpfpm composer update --prefer-source --no-interaction --no-progress
 docker exec -it pci-training-phpfpm php tao/scripts/taoUpdate.php -vvv
 ```
 
 - Install a TAO extension
 ```bash
-cd stack
 docker exec -it pci-training-phpfpm php tao/scripts/installExtension.php theTaoExtensionToInstall
 ```
 
 - Bundle the JavaScript for a TAO extension
 ```bash
-cd stack
 docker exec -it pci-training-phpfpm bash ./tao-build.sh bundle theTaoExtensionToBundle
 ```
 
 - Bundle the CSS for a TAO extension
 ```bash
-cd stack
 docker exec -it pci-training-phpfpm bash ./tao-build.sh sass theTaoExtensionToBundle
 ```
 
 - Compile and package PCI for a TAO extension
 ```bash
-cd stack
 docker exec -it pci-training-phpfpm bash ./tao-build.sh pci theTaoExtensionToBundle
 ```
 
 ```bash
-cd stack
 docker exec -it pci-training-phpfpm bash ./tao-build.sh pci theTaoExtensionToBundle thePCIidentifier
 ```
 
 - Open a terminal on the TAO server
 ```bash
-cd stack
 docker exec -it pci-training-phpfpm bash
 ```
