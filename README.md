@@ -1,10 +1,14 @@
 # PCI Training
 
+A Docker stack for working with PCI in TAO.
+
 # Table of contents
+- [Checkout](#checkout)
 - [TL; DR](#tl-dr)
   - [Install the stack](#install-the-stack)
   - [Stop the stack](#stop-the-stack)
   - [Start the stack](#start-the-stack)
+  - [Open a terminal on the server](#open-a-terminal-on-the-server)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Commands](#commands)
@@ -12,29 +16,47 @@
   - [Windows specific](#windows-specific)
 - [Manual installation](#manual-installation)
 - [Manual uninstallation](#manual-uninstallation)
+- [Manual commands](#manual-commands)
+
+# Checkout
+
+To install the project, you can either check it out using Git, or [download a Zip file](https://github.com/oat-sa/pci-training-docker/archive/refs/heads/main.zip).
+
+```bash
+git clone https://github.com/oat-sa/pci-training-docker.git
+```
+
+> **Note:** The command above assumes you opened a terminal and changed the current directory to a parent folder. A sub-folder will be created to contain the project: `pci-training-docker`.
 
 # TL; DR
 
 Once the stack is installed, you can open TAO on your browser at https://training.pci.localhost
 
-### Install the stack
 ```bash
-$ make
+cd pci-training-docker
+make up
 ```
 
-### Stop the stack
+> **Note:** the commands listed below assume you opened a terminal and changed the current directory to the root of the project:
+
+## Install the stack
 ```bash
-$ make down
+make
 ```
 
-### Start the stack
+## Stop the stack
 ```bash
-$ make up
+make down
 ```
 
-### Open a terminal on the server
+## Start the stack
 ```bash
-$ make bash
+make up
+```
+
+## Open a terminal on the server
+```bash
+make bash
 ```
 
 # Prerequisites
@@ -48,7 +70,7 @@ $ make bash
 
 # Installation
 ```bash
-$ make
+make
 ```
 
 Open TAO on your browser at https://training.pci.localhost
@@ -57,81 +79,81 @@ Open TAO on your browser at https://training.pci.localhost
 
 - Start the server
 ```bash
-$ make up
+make up
 ```
 
 - Stop the server
 ```bash
-$ make down
+make down
 ```
 
 - Stop and delete the server
 ```bash
-$ make tear-down
+make tear-down
 ```
 
 - Install TAO
 ```bash
-$ make tao-install
+make tao-install
 ```
 
 - Update TAO
 ```bash
-$ make tao-update
+make tao-update
 ```
 
 - Install the TAO tooling
 ```bash
-$ make tao-install-tools
+make tao-install-tools
 ```
 
 - Install a TAO extension
 ```bash
-$ make tao-install-extension theTaoExtensionToInstall
+make tao-install-extension theTaoExtensionToInstall
 ```
 
 - Bundle the JavaScript for a TAO extension
 ```bash
-$ make tao-bundle theTaoExtensionToBundle
+make tao-bundle theTaoExtensionToBundle
 ```
 
 - Bundle the CSS for a TAO extension
 ```bash
-$ make tao-sass theTaoExtensionToBundle
+make tao-sass theTaoExtensionToBundle
 ```
 
 - Compile and package PCI for a TAO extension
 ```bash
-$ make tao-pci theTaoExtensionToBundle
+make tao-pci theTaoExtensionToBundle
 ```
 
 ```bash
-$ make tao-pci theTaoExtensionToBundle thePCIidentifier
+make tao-pci theTaoExtensionToBundle thePCIidentifier
 ```
 
 - Open a terminal on the TAO server
 ```bash
-$ make tao-bash
+make tao-bash
 ```
 
 - Install the source code
 ```bash
-$ make composer-install
+make composer-install
 ```
 
 - Update the source code
 ```bash
-$ make composer-update
+make composer-update
 ```
 
 - Install the stack
 ```bash
-$ make install
+make install
 ```
 
 - Uninstall the stack
 ```bash
-$ make uninstall
+make uninstall
 ```
 
 # Troubleshoot
@@ -148,17 +170,17 @@ ROOT_FS=c:/
 - Enter package directory:
 
 ```bash
-$ cd stack
+cd stack
 ```
 
 - Open the `certs` folder:
 ```bash
-$ cd certs
+cd certs
 ```
 
 - Generate a self-signed certificate:
 ```bash
-$ mkcert \
+mkcert \
 -cert-file pci.localhost-cert.pem \
 -key-file pci.localhost-key.pem \
 pci.localhost "*.pci.localhost"
@@ -166,47 +188,47 @@ pci.localhost "*.pci.localhost"
 
 - Install the generated self-signed certificate to your OS:
 ```bash
-$ mkcert -install
+mkcert -install
 ```
 
 - Go back to the root of the project:
 ```bash
-$ cd ..
+cd ..
 ```
 - Create `pci-docker` docker network:
 
 ```bash
-$ docker network create pci-docker
+docker network create pci-docker
 ```
 
 - Build docker services:
 
 ```bash
-$ docker-compose up -d
+docker-compose up -d
 ```
 
 - Enter TAO directory:
 
 ```bash
-$ cd tao
+cd tao
 ```
 
 - Install the sources:
 
 ```bash
-$ composer install --prefer-source
+composer install --prefer-source
 ```
 
 - Enter package directory:
 
 ```bash
-$ cd ../stack
+cd ../stack
 ```
 
 - Install the platform:
 
 ```bash
-$ docker exec -it pci-training-phpfpm php tao/scripts/taoSetup.php /var/stack/setup.json -vvv
+docker exec -it pci-training-phpfpm php tao/scripts/taoSetup.php /var/stack/setup.json -vvv
 ```
 
 # Manual uninstallation
@@ -214,27 +236,94 @@ $ docker exec -it pci-training-phpfpm php tao/scripts/taoSetup.php /var/stack/se
 - Enter package directory:
 
 ```bash
-$ cd stack
+cd stack
 ```
 
 - Tear down the docker services:
 
 ```bash
-$ docker-compose down --rmi all -v
+docker-compose down --rmi all -v
 ```
 
 - Remove the `pci-docker` docker network:
 
 ```bash
-$ docker network rm pci-docker
+docker network rm pci-docker
 ```
 
 - Open the `certs` folder:
 ```bash
-$ cd certs
+cd certs
 ```
 
 - Uninstall the generated self-signed certificate to your OS:
 ```bash
-$ mkcert -uninstall
+mkcert -uninstall
+```
+
+
+# Manual commands
+
+- Start the server
+```bash
+cd stack
+docker-compose up -d
+```
+
+- Stop the server
+```bash
+cd stack
+docker-compose down
+```
+
+- Install TAO
+```bash
+cd stack
+docker exec -it pci-training-phpfpm composer install --prefer-source --no-interaction --no-progress
+docker exec -it pci-training-phpfpm bash ./tao-cleanup.sh
+docker exec -it pci-training-phpfpm php tao/scripts/taoSetup.php /var/stack/setup.json -vvv
+docker exec -it pci-training-phpfpm bash ./tao-build.sh install
+docker exec -it pci-training-phpfpm bash ./tao-mathjax.sh
+```
+
+- Update TAO
+```bash
+cd stack
+docker exec -it pci-training-phpfpm composer update --prefer-source --no-interaction --no-progress
+docker exec -it pci-training-phpfpm php tao/scripts/taoUpdate.php -vvv
+```
+
+- Install a TAO extension
+```bash
+cd stack
+docker exec -it pci-training-phpfpm php tao/scripts/installExtension.php theTaoExtensionToInstall
+```
+
+- Bundle the JavaScript for a TAO extension
+```bash
+cd stack
+docker exec -it pci-training-phpfpm bash ./tao-build.sh bundle theTaoExtensionToBundle
+```
+
+- Bundle the CSS for a TAO extension
+```bash
+cd stack
+docker exec -it pci-training-phpfpm bash ./tao-build.sh sass theTaoExtensionToBundle
+```
+
+- Compile and package PCI for a TAO extension
+```bash
+cd stack
+docker exec -it pci-training-phpfpm bash ./tao-build.sh pci theTaoExtensionToBundle
+```
+
+```bash
+cd stack
+docker exec -it pci-training-phpfpm bash ./tao-build.sh pci theTaoExtensionToBundle thePCIidentifier
+```
+
+- Open a terminal on the TAO server
+```bash
+cd stack
+docker exec -it pci-training-phpfpm bash
 ```
