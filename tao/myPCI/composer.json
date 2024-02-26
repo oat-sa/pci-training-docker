@@ -1,0 +1,32 @@
+{
+    "name": "oat-sa/my-pci",
+    "description": "",
+    "type": "tao-extension",
+    "authors": [
+        {
+            "name": "Open Assessment Technologies SA"
+        }
+    ],
+    "keywords": [
+        "tao",
+        "computer-based-assessment"
+    ],
+    "homepage": "http://www.taotesting.com",
+    "license": [
+        "GPL-2.0"
+    ],
+    "extra": {
+        "tao-extension-name": "myPCI"
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "oat-sa/tao-core": ">=53.14.5.0",
+        "oat-sa/extension-tao-itemqti": ">=30.5.0.0",
+        "oat-sa/extension-tao-itemqti-pci": ">=8.12.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "oat\\myPCI\\": ""
+        }
+    }
+}

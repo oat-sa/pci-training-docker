@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ced800d8c74d0f5e3f4994cde0169b7",
+    "content-hash": "f17d5f6045463d0a7315053797f92117",
     "packages": [
         {
             "name": "carbonphp/carbon-doctrine-types",
@@ -6689,6 +6689,45 @@
             "time": "2018-08-02T11:59:59+00:00"
         },
         {
+            "name": "oat-sa/my-pci",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "./myPCI",
+                "reference": "311514841a1cd03875893fed5424a1cfb8bcd22d"
+            },
+            "require": {
+                "oat-sa/extension-tao-itemqti": ">=30.5.0.0",
+                "oat-sa/extension-tao-itemqti-pci": ">=8.12.1.0",
+                "oat-sa/tao-core": ">=53.14.5.0"
+            },
+            "type": "tao-extension",
+            "extra": {
+                "tao-extension-name": "myPCI"
+            },
+            "autoload": {
+                "psr-4": {
+                    "oat\\myPCI\\": ""
+                }
+            },
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Open Assessment Technologies SA"
+                }
+            ],
+            "homepage": "http://www.taotesting.com",
+            "keywords": [
+                "computer-based-assessment",
+                "tao"
+            ],
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
             "name": "oat-sa/oatbox-extension-installer",
             "version": "v1.2",
             "source": {
@@ -11205,7 +11244,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "oat-sa/extension-tao-training-pci": 20
+        "oat-sa/extension-tao-training-pci": 20,
+        "oat-sa/my-pci": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
