@@ -19,6 +19,8 @@
  * Copyright (c) 2024 (original work) Open Assessment Technologies SA;
  */
 
+use oat\myPCI\scripts\install\RegisterPciSimplePCI;
+
 /**
  * Generated using taoDevTools 8.10.0.0
  */
@@ -32,7 +34,11 @@ return array(
     'acl' => array(
         array('grant', 'http://www.tao.lu/Ontologies/generis.rdf#myPCIManager', array('ext' => 'myPCI')),
     ),
-    'install' => array(),
+    'install' => array(
+        "php" => [
+            RegisterPciSimplePCI::class
+        ]
+    ),
     'uninstall' => array(),
     'routes' => array(
         '/myPCI' => 'oat\\myPCI\\controller'

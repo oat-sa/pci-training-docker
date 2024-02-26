@@ -1,0 +1,45 @@
+{
+    "model": "IMSPCI",
+    "typeIdentifier": "simplePCI",
+    "label": "A simple PCI",
+    "description": "Ask for a name and show it",
+    "version": "0.1.0",
+    "author": "OAT SA",
+    "email": "contact@taotesting.com",
+    "tags": [],
+    "icon": "./icon.svg",
+    "short": "A simple PCI",
+    "response": {
+        "baseType": "string",
+        "cardinality": "single"
+    },
+    "runtime": {
+        "hook": "./runtime/simplePCI.min.js",
+        "modules": {
+            "simplePCI/runtime/simplePCI.min": ["runtime/simplePCI.min.js"]
+        },
+        "libraries": [],
+        "src": [
+            "./runtime/simplePCI.js",
+            "./runtime/renderer.js",
+            "./runtime/helper/properties.js",
+            "./runtime/tpl/main.tpl",
+            "./runtime/tpl/input.tpl",
+            "./runtime/tpl/output.tpl",
+            "./runtime/css/simplePCI.css"
+        ],
+        "stylesheets": ["./runtime/css/simplePCI.css"]
+    },
+    "creator": {
+        "icon": "./icon.svg",
+        "hook": "./imsPciCreator.min.js",
+        "src": [
+            "./imsPciCreator.js",
+            "./creator/tpl/markup.tpl",
+            "./creator/tpl/propertiesForm.tpl",
+            "./creator/widget/Widget.js",
+            "./creator/widget/states/states.js",
+            "./creator/widget/states/Question.js"
+        ]
+    }
+}
