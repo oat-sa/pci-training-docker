@@ -27,6 +27,8 @@ To install the project, you can either check it out using Git, or [download a Zi
 git clone --recurse-submodules -j8 https://github.com/oat-sa/pci-training-docker.git
 ```
 
+> **Note:** The command above assumes you opened a terminal and changed the current directory to a parent folder. A sub-folder will be created to contain the project: `pci-training-docker`.
+
 If you already cloned the repository, submodules may need to be added:
 
 ```bash
@@ -41,8 +43,6 @@ To use the [PCI SDK](https://github.com/oat-sa/pci-sdk) submodule, you need to i
 cd pci-training-docker/sdk
 npm i
 ```
-
-> **Note:** The command above assumes you opened a terminal and changed the current directory to a parent folder. A sub-folder will be created to contain the project: `pci-training-docker`.
 
 # TL; DR
 
