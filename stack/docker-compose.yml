@@ -1,5 +1,3 @@
-version: '3'
-
 services:
     pci-training-reverse-proxy:
         container_name: pci-training-reverse-proxy
