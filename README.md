@@ -10,39 +10,41 @@ A Docker stack for working with PCI in TAO.
     -   [Stop the stack](#stop-the-stack)
     -   [Start the stack](#start-the-stack)
     -   [Open a terminal on the server](#open-a-terminal-on-the-server)
+-   [PCI SDK](#pci-sdk)
 -   [Prerequisites](#prerequisites)
 -   [Installation](#installation)
+-   [Update](#update)
+    -   [Update TAO](#update-tao)
+    -   [Reinstall all](#reinstall-all)
 -   [Commands](#commands)
 -   [Troubleshoot](#troubleshoot)
     -   [Windows specific](#windows-specific)
 -   [Manual installation](#manual-installation)
 -   [Manual uninstallation](#manual-uninstallation)
 -   [Manual commands](#manual-commands)
+-   [PCI development](#pci-development)
 
 # Checkout
 
 To install the project, you can either check it out using Git, or [download a Zip file](https://github.com/oat-sa/pci-training-docker/archive/refs/heads/main.zip).
 
+For checking it out from Git, run the following command:
+
 ```bash
-git clone --recurse-submodules -j8 https://github.com/oat-sa/pci-training-docker.git
+git clone https://github.com/oat-sa/pci-training-docker.git
 ```
 
 > **Note:** The command above assumes you opened a terminal and changed the current directory to a parent folder. A sub-folder will be created to contain the project: `pci-training-docker`.
 
-If you already cloned the repository, submodules may need to be added:
+The project also comes with external tools, as Git submodules. They can be all installed at once when checking out the repository:
 
 ```bash
-cd pci-training-docker
-git submodule init
-git submodule update
+git clone --recurse-submodules -j8 git@github.com:oat-sa/pci-training-docker.git
 ```
 
-To use the [PCI SDK](https://github.com/oat-sa/pci-sdk) submodule, you need to install it too:
-
-```bash
-cd pci-training-docker/sdk
-npm i
-```
+> **Note:** The command above assumes you have configured your account with SSH access. Please make sure your SSH (public) key is properly registered in your [GitHub profile](https://github.com/settings/keys). In case of trouble checking out, make sure your system is also properly configured.
+>
+> These tools are optional, the stack can still work fine without them. They add convenient helpers for generating and updating PCI. For more information, please refer to [the related repository](https://github.com/oat-sa/pci-sdk).
 
 # TL; DR
 
@@ -79,6 +81,35 @@ make up
 make bash
 ```
 
+## PCI SDK
+
+The project also comes with external tools, from the [PCI SDK](https://github.com/oat-sa/pci-sdk).
+
+They are added as Git submodules, which can be all installed at once when checking out the repository:
+
+```bash
+git clone --recurse-submodules -j8 git@github.com:oat-sa/pci-training-docker.git
+```
+
+> **Note:** The command above assumes you have configured your account with SSH access. Please make sure your SSH (public) key is properly registered in your [GitHub profile](https://github.com/settings/keys). In case of trouble checking out, make sure your system is also properly configured.
+>
+> These tools are optional, the stack can still work fine without them. They add convenient helpers for generating and updating PCI. For more information, please refer to [the related repository](https://github.com/oat-sa/pci-sdk).
+
+Submodules can still be added, if you already cloned the repository:
+
+```bash
+cd pci-training-docker
+git submodule init
+git submodule update
+```
+
+To use the [PCI SDK](https://github.com/oat-sa/pci-sdk) submodule, you need to install it too:
+
+```bash
+cd pci-training-docker/sdk
+npm i
+```
+
 # Prerequisites
 
 -   Install `mkcert` following the [official guide](https://github.com/FiloSottile/mkcert)
@@ -90,11 +121,46 @@ make bash
 
 # Installation
 
+A [make](https://www.gnu.org/software/make/) script takes care of installing everything, assuming you already have cloned the repository and have a running Docker.
+
 ```bash
 make
 ```
 
 Open TAO on your browser at https://training.pci.localhost
+
+# Update
+
+To update the coned repository, check out the last changes:
+
+```bash
+git fetch origin
+git pull
+```
+
+If you also have the submodules, you may need to update them:
+
+```bash
+git submodule update
+```
+
+Depending on the nature of the changes, you may need either to update TAO, or reinstall all.
+
+## Update TAO
+
+```bash
+make composer-install
+make tao-update
+```
+
+## Reinstall all
+
+> **Note:** this will destroy and recreate the TAO instance. Be sure to backup your data before doing so.
+
+```bash
+make composer-install
+make tao-install
+```
 
 # Commands
 
@@ -369,3 +435,36 @@ docker exec -it pci-training-phpfpm bash ./tao-build.sh pci theTaoExtensionToBun
 ```bash
 docker exec -it pci-training-phpfpm bash
 ```
+
+## PCI development
+
+The project comes configured with a development mode for the PCI. Out of the box, the following PCI are already configured:
+
+-   Geogebra
+-   textReaderInteraction
+-   audioRecordingInteraction
+-   likertScoreInteraction
+-   mathEntryInteraction
+
+To manage this list, open the file `config/taoQtiItem/debug_portable_element.conf.php`, and add/remove the PCI, following this format:
+
+```php
+<?php
+return [
+    ...
+    'pciIdentifier' => 'path/to/pci/source/folder/',
+    ...
+];
+```
+
+Any PCI listed in this configuration will be reloaded in the authoring after each page refresh without having to bundle again the PCI after each modification.
+
+The process is as follows:
+
+1. Register the PCI in the `debug_portable_element` configuration.
+2. Make a change in the source code.
+3. Refresh the Item editor (you will need to re-enter the authoring mode).
+4. When entering the authoring, all the source files declared in the PCI manifest are copied to the registry (make sure the manifest file lists them all).
+5. The PCI in the authored item is up to date with your changes.
+
+> **Note:** This does not remove the need to bundle the PCI, when releasing it. This only helps not re-bundle and re-install the PCI after each change to see it in TAO.
