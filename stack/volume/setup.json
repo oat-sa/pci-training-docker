@@ -52,7 +52,11 @@
         },
         "taoQtiItem": {
             "debug_portable_element": {
-                "likertScaleInteraction": "qtiItemPci/views/js/pciCreator/dev/likertScaleInteraction/"
+                "GGBPCI": "geogebra/views/js/pciCreator/ims/geogebrapci/",
+                "textReaderInteraction": "pciSamples/views/js/pciCreator/ims/textReaderInteraction/",
+                "audioRecordingInteraction": "qtiItemPci/views/js/pciCreator/ims/audioRecordingInteraction/",
+                "likertScoreInteraction": "qtiItemPci/views/js/pciCreator/ims/likertScoreInteraction/",
+                "mathEntryInteraction": "qtiItemPci/views/js/pciCreator/ims/mathEntryInteraction/"
             }
         }
     },
