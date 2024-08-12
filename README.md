@@ -42,7 +42,7 @@ The project also comes with external tools, as Git submodules. They can be all i
 git clone --recurse-submodules -j8 git@github.com:oat-sa/pci-training-docker.git
 ```
 
-> **Note:** The command above assumes you have configured your account with SSH access. Please make sure your SSH (public) key is properly registered in your [GitHub profile](https://github.com/settings/keys). In case of trouble checking out, make sure your system is also properly configured.
+> **Note:** The command above assumes you have configured your account with SSH access. Please make sure your SSH (public) key is properly registered in your [GitHub profile](https://github.com/settings/keys). In case of trouble checking out, make sure your system is also properly configured, with your SSH key created and accessible from your Git client.
 >
 > These tools are optional, the stack can still work fine without them. They add convenient helpers for generating and updating PCI. For more information, please refer to [the related repository](https://github.com/oat-sa/pci-sdk).
 
@@ -91,7 +91,7 @@ They are added as Git submodules, which can be all installed at once when checki
 git clone --recurse-submodules -j8 git@github.com:oat-sa/pci-training-docker.git
 ```
 
-> **Note:** The command above assumes you have configured your account with SSH access. Please make sure your SSH (public) key is properly registered in your [GitHub profile](https://github.com/settings/keys). In case of trouble checking out, make sure your system is also properly configured.
+> **Note:** The command above assumes you have configured your account with SSH access. Please make sure your SSH (public) key is properly registered in your [GitHub profile](https://github.com/settings/keys). In case of trouble checking out, make sure your system is also properly configured, with your SSH key created and accessible from your Git client.
 >
 > These tools are optional, the stack can still work fine without them. They add convenient helpers for generating and updating PCI. For more information, please refer to [the related repository](https://github.com/oat-sa/pci-sdk).
 
@@ -131,7 +131,7 @@ Open TAO on your browser at https://training.pci.localhost
 
 # Update
 
-To update the coned repository, check out the last changes:
+To update the cloned repository, check out the last changes:
 
 ```bash
 git fetch origin
@@ -457,7 +457,7 @@ return [
 ];
 ```
 
-Any PCI listed in this configuration will be reloaded in the authoring after each page refresh without having to bundle again the PCI after each modification.
+Any PCI listed in this configuration will be reloaded in the authoring after each page refresh without having to bundle the PCI again.
 
 The process is as follows:
 
