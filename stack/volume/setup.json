@@ -2,7 +2,16 @@
     "seed": {
         "identifier": "pci-training"
     },
-    "extensions": ["taoCe", "taoMediaManager", "pciSamples", "parccTei", "geogebra", "xmlEdit", "xmlEditQtiDebugger", "taoDevTools"],
+    "extensions": [
+        "taoCe",
+        "taoMediaManager",
+        "pciSamples",
+        "parccTei",
+        "geogebra",
+        "xmlEdit",
+        "xmlEditQtiDebugger",
+        "taoDevTools"
+    ],
     "super-user": {
         "login": "admin",
         "password": "Admin.12345",
@@ -39,11 +48,11 @@
                     "port": 5775,
                     "threshold": 1
                 }
-            ],
-            "taoQtiItem": {
-                "debug_portable_element": {
-                    "likertScaleInteraction": "qtiItemPci/views/js/pciCreator/dev/likertScaleInteraction/"
-                }
+            ]
+        },
+        "taoQtiItem": {
+            "debug_portable_element": {
+                "likertScaleInteraction": "qtiItemPci/views/js/pciCreator/dev/likertScaleInteraction/"
             }
         }
     },
