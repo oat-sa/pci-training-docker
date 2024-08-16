@@ -1856,16 +1856,16 @@
         },
         {
             "name": "janfix/extension-geogebra",
-            "version": "V1.1.0",
+            "version": "V1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/janfix/extension-geogebra.git",
-                "reference": "eb60b1d098366221ae1cffd28a67916c18eceeea"
+                "reference": "347efda0a9d6435f5705ed00f1fce7e59a556ac5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/janfix/extension-geogebra/zipball/eb60b1d098366221ae1cffd28a67916c18eceeea",
-                "reference": "eb60b1d098366221ae1cffd28a67916c18eceeea",
+                "url": "https://api.github.com/repos/janfix/extension-geogebra/zipball/347efda0a9d6435f5705ed00f1fce7e59a556ac5",
+                "reference": "347efda0a9d6435f5705ed00f1fce7e59a556ac5",
                 "shasum": ""
             },
             "require": {
@@ -1901,10 +1901,10 @@
                 "tao"
             ],
             "support": {
-                "source": "https://github.com/janfix/extension-geogebra/tree/V1.1.0",
+                "source": "https://github.com/janfix/extension-geogebra/tree/V1.2.0",
                 "issues": "https://github.com/janfix/extension-geogebra/issues"
             },
-            "time": "2024-03-04T07:58:35+00:00"
+            "time": "2024-08-06T08:50:25+00:00"
         },
         {
             "name": "jtl-software/opsgenie-client",
@@ -4201,16 +4201,16 @@
         },
         {
             "name": "oat-sa/extension-tao-devtools",
-            "version": "v8.10.2",
+            "version": "v8.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oat-sa/extension-tao-devtools.git",
-                "reference": "63b36856e25e9f613d1830588f62b96eb761edf1"
+                "reference": "8563134bd084c9f3897317c063f2f425be085fd6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oat-sa/extension-tao-devtools/zipball/63b36856e25e9f613d1830588f62b96eb761edf1",
-                "reference": "63b36856e25e9f613d1830588f62b96eb761edf1",
+                "url": "https://api.github.com/repos/oat-sa/extension-tao-devtools/zipball/8563134bd084c9f3897317c063f2f425be085fd6",
+                "reference": "8563134bd084c9f3897317c063f2f425be085fd6",
                 "shasum": ""
             },
             "require": {
@@ -4285,9 +4285,9 @@
             "support": {
                 "forum": "http://forum.taotesting.com",
                 "issues": "https://github.com/oat-sa/extension-tao-devtools/issues",
-                "source": "https://github.com/oat-sa/extension-tao-devtools/tree/v8.10.2"
+                "source": "https://github.com/oat-sa/extension-tao-devtools/tree/v8.11.0"
             },
-            "time": "2024-07-30T11:07:59+00:00"
+            "time": "2024-08-02T13:37:45+00:00"
         },
         {
             "name": "oat-sa/extension-tao-eventlog",
@@ -7442,16 +7442,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "3.0.39",
+            "version": "3.0.41",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "211ebc399c6e73c225a018435fe5ae209d1d1485"
+                "reference": "621c73f7dcb310b61de34d1da4c4204e8ace6ceb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/211ebc399c6e73c225a018435fe5ae209d1d1485",
-                "reference": "211ebc399c6e73c225a018435fe5ae209d1d1485",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/621c73f7dcb310b61de34d1da4c4204e8ace6ceb",
+                "reference": "621c73f7dcb310b61de34d1da4c4204e8ace6ceb",
                 "shasum": ""
             },
             "require": {
@@ -7532,7 +7532,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpseclib/phpseclib/issues",
-                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.39"
+                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.41"
             },
             "funding": [
                 {
@@ -7548,7 +7548,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-06-24T06:27:33+00:00"
+            "time": "2024-08-12T00:13:54+00:00"
         },
         {
             "name": "phpstan/phpdoc-parser",
