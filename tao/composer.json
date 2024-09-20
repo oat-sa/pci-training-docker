@@ -31,7 +31,7 @@
         "oat-sa/extension-tao-devtools": "*",
         "oat-sa/extension-parcc-tei": "*",
         "oat-sa/extension-tao-training-pci": "dev-main",
-        "janfix/extension-geogebra": "*",
+        "janfix/extension-geogebra": "dev-master",
         "oat-sa/extension-tao-xmledit": "*",
         "oat-sa/extension-tao-xmledit-qtidebugger": "*",
         "oat-sa/extension-tao-xmledit-responseprocessing": "*"
