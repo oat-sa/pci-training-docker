@@ -57,7 +57,7 @@ create-certs:
 		echo "Generating trusted certificate for localhost using mkcert ..."; \
 		mkdir -p ${CERTS_DIR}; \
 		command -v mkcert >/dev/null 2>&1 || { echo "${C_ERR}mkcert is not installed. Please install it with 'brew install mkcert' and run 'mkcert -install' once.${C_RST}"; exit 1; }; \
-		mkcert -cert-file ${CERTS_DIR}/${TAO_DOMAIN}-cert.pem -key-file ${CERTS_DIR}/${TAO_DOMAIN}-key.pem ${TAO_DOMAIN} "*.${TAO_DOMAIN}" \
+		mkcert -cert-file ${CERTS_DIR}/${TAO_DOMAIN}-cert.pem -key-file ${CERTS_DIR}/${TAO_DOMAIN}-key.pem ${TAO_DOMAIN} "*.${TAO_DOMAIN}"; \
 		cd ${CERTS_DIR} && mkcert -install && cd ..; \
 		echo "Certificate: ${CERTS_DIR}/${TAO_DOMAIN}-cert.pem"; \
 		echo "Key: ${CERTS_DIR}/${TAO_DOMAIN}-key.pem"; \
