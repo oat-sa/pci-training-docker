@@ -1,15 +1,17 @@
 .DEFAULT_GOAL := welcome
 PROJECT_NAME := pci-training
-TAO_NETWORK := pci-docker
 TAO_DOMAIN := pci.localhost
 TAO_URL := https://training.${TAO_DOMAIN}/
 TAO_CONTAINER := ${PROJECT_NAME}-phpfpm
 COMPOSER_INSTALL := composer install --prefer-source --no-interaction --no-progress
 COMPOSER_UPDATE := composer update --prefer-source --no-interaction --no-progress
-DOCKER_COMPOSE := docker compose -p ${PROJECT_NAME} -f ./stack/docker-compose.yml
-CERTS_DIR := stack/certs
+DOCKER_DIR := ./stack
+DOCKER_NETWORK := pci-docker
+DOCKER_COMPOSE := docker compose -p ${PROJECT_NAME} -f ${DOCKER_DIR}/docker-compose.yml
+CERTS_DIR := ${DOCKER_DIR}/certs
 
 C_RST := \033[0m
+C_ERR := \033[0;31m
 C_MSG := \033[0;32m
 C_SEL := \033[0;33m
 
@@ -20,6 +22,7 @@ welcome:
 install:
 	@echo "${C_MSG}Installing ${C_SEL}${PROJECT_NAME}${C_MSG}...${C_RST}"
 	@make create-network
+	@make create-certs
 	@make up
 	@make composer-install
 	@make tao-install-tools
@@ -35,14 +38,37 @@ uninstall:
 
 create-network:
 	@echo "${C_MSG}Installing the network${C_RST}"
-	docker network create ${TAO_NETWORK}
-	mkcert -cert-file ${CERTS_DIR}/pci.localhost-cert.pem -key-file ${CERTS_DIR}/pci.localhost-key.pem ${TAO_DOMAIN} "*.${TAO_DOMAIN}"
-	cd ${CERTS_DIR} && mkcert -install && cd ..
+	@if ! docker network inspect $(DOCKER_NETWORK) > /dev/null 2>&1; then \
+		echo "Creating docker network $(DOCKER_NETWORK)..."; \
+		docker network create $(DOCKER_NETWORK); \
+	else \
+		echo "Docker network $(DOCKER_NETWORK) already exists."; \
+	fi
 
 destroy-network:
 	@echo "${C_MSG}Removing the network${C_RST}"
-	docker network rm ${TAO_NETWORK}
+	docker network rm ${DOCKER_NETWORK}
+
+create-certs:
+	@if [ -f ${CERTS_DIR}/${TAO_DOMAIN}-cert.pem ] && [ -f ${CERTS_DIR}/${TAO_DOMAIN}-key.pem ]; then \
+		echo "Certificates already exist in ${CERTS_DIR}. Skipping creation."; \
+	else \
+		echo "Generating trusted certificate for localhost using mkcert ..."; \
+		mkdir -p ${CERTS_DIR}; \
+		command -v mkcert >/dev/null 2>&1 || { echo "${C_ERR}mkcert is not installed. Please install it with 'brew install mkcert' and run 'mkcert -install' once.${C_RST}"; exit 1; }; \
+		mkcert -cert-file ${CERTS_DIR}/${TAO_DOMAIN}-cert.pem -key-file ${CERTS_DIR}/${TAO_DOMAIN}-key.pem ${TAO_DOMAIN} "*.${TAO_DOMAIN}" \
+		cd ${CERTS_DIR} && mkcert -install && cd ..; \
+		echo "Certificate: ${CERTS_DIR}/${TAO_DOMAIN}-cert.pem"; \
+		echo "Key: ${CERTS_DIR}/${TAO_DOMAIN}-key.pem"; \
+		echo "All certificates in ${CERTS_DIR} have been installed. Consider restarting your browser to trust the new certificates."; \
+	fi
+
+remove-certs:
+	@echo "Removing trusted certificate for localhost using mkcert ..."
+	@command -v mkcert >/dev/null 2>&1 || { echo "${C_ERR}mkcert is not installed. Please install it with 'brew install mkcert'.${C_RST}"; exit 1; }
 	cd ${CERTS_DIR} && mkcert -uninstall && cd ..
+	rm -rf ${CERTS_DIR}
+	@echo "All certificates in ${CERTS_DIR} have been removed. Consider restarting your browser to remove the trusted certificates."
 
 up:
 	@echo "${C_MSG}Starting the TAO server${C_RST}"
