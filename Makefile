@@ -33,6 +33,7 @@ install:
 uninstall:
 	@echo "${C_MSG}Uninstalling ${C_SEL}${PROJECT_NAME}${C_MSG}...${C_RST}"
 	@make tear-down
+	@make remove-certs
 	@make destroy-network
 	@echo "${C_MSG}Uninstallation is completed!${C_RST}"
 
