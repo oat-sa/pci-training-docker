@@ -1,11 +1,10 @@
 {
     "name": "oat-sa/pci-package",
+    "version": "1.0.0",
     "license": "GPL-2.0-only",
     "config": {
         "preferred-install": "dist",
-        "platform": {
-            "php": "8"
-        },
+        "platform": {},
         "allow-plugins": {
             "oat-sa/oatbox-extension-installer": true,
             "oat-sa/composer-npm-bridge": true,
@@ -27,7 +26,7 @@
         }
     ],
     "require": {
-        "oat-sa/tao-community": "2024.08",
+        "oat-sa/tao-community": "2025.08",
         "oat-sa/extension-tao-devtools": "*",
         "oat-sa/extension-parcc-tei": "*",
         "oat-sa/extension-tao-training-pci": "dev-main",
